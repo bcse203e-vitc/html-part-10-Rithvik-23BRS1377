@@ -1,1 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country-State Dropdown</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        select {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Country and State Selection</h2>
+
+<label for="country">Select Country:</label>
+<select id="country">
+    <option value="">Select a Country</option>
+    <option value="USA">USA</option>
+    <option value="India">India</option>
+    <option value="UK">UK</option>
+</select>
+
+<label for="state">Select State:</label>
+<select id="state">
+    <option value="">Select a State</option>
+</select>
+
+<script>
+    
+    const countryStates = {
+        USA: ['California', 'Texas', 'New York', 'Florida', 'Illinois'],
+        India: ['Maharashtra', 'Karnataka', 'Tamil Nadu', 'Uttar Pradesh', 'Gujarat'],
+        UK: ['England', 'Scotland', 'Wales', 'Northern Ireland']
+    };
+
+    
+    const countryDropdown = document.getElementById('country');
+    const stateDropdown = document.getElementById('state');
+
+    
+    function updateStates() {
+        
+        const selectedCountry = countryDropdown.value;
+        
+        
+        stateDropdown.innerHTML = '<option value="">Select a State</option>';
+        
+        
+        if (selectedCountry && countryStates[selectedCountry]) {
+            const states = countryStates[selectedCountry];
+            
+            states.forEach(function(state) {
+                const option = document.createElement('option');
+                option.value = state;
+                option.textContent = state;
+                stateDropdown.appendChild(option);
+            });
+        }
+    }
+
+    
+    countryDropdown.addEventListener('change', updateStates);
+</script>
+
+</body>
+</html>
 
