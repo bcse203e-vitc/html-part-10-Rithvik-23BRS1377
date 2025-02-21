@@ -66,40 +66,32 @@
 </div>
 
 <script>
-    // Get the canvas and context
     const canvas = document.getElementById('drawingCanvas');
     const ctx = canvas.getContext('2d');
-
-    // Get the UI elements
     const colorPicker = document.getElementById('colorPicker');
     const brushSize = document.getElementById('brushSize');
     const brushSizeValue = document.getElementById('brushSizeValue');
     const clearButton = document.getElementById('clearButton');
 
-    // Default drawing settings
     let drawing = false;
     let currentColor = colorPicker.value;
     let currentBrushSize = brushSize.value;
 
-    // Update the brush size display
     brushSize.addEventListener('input', () => {
         currentBrushSize = brushSize.value;
         brushSizeValue.textContent = currentBrushSize;
     });
 
-    // Update the drawing color
     colorPicker.addEventListener('input', () => {
         currentColor = colorPicker.value;
     });
 
-    // Start drawing
     canvas.addEventListener('mousedown', (e) => {
         drawing = true;
         ctx.beginPath();
         ctx.moveTo(e.offsetX, e.offsetY);
     });
 
-    // Draw on the canvas
     canvas.addEventListener('mousemove', (e) => {
         if (drawing) {
             ctx.lineWidth = currentBrushSize;
@@ -110,12 +102,10 @@
         }
     });
 
-    // Stop drawing
     canvas.addEventListener('mouseup', () => {
         drawing = false;
     });
 
-    // Clear the canvas
     clearButton.addEventListener('click', () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
     });
@@ -123,4 +113,3 @@
 
 </body>
 </html>
-
